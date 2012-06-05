@@ -1,0 +1,28 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+html, body {
+	width: 100%;
+	height: 100%
+}
+#wrapper {
+	padding: 100px;
+}
+#area {
+	position: relative;
+	width: 500px;
+	height: 500px;
+	border: 1px solid gray;
+	overflow: hidden;
+	margin-bottom: 10px;
+	
+	background: white url("../img/waypoints-line.png") no-repeat;/*for example*/
+}
+#item {
+	width: 128px;
+	height: 128px;
+	border: 1px solid gray;
+	background: url("../img/item.png") no-repeat;
+	position: absolute;
+}
