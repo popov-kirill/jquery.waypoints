@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>jQuery waypoints Documentation</title>
+	<!--<link rel="stylesheet" type="text/css" href="css/styles.css" />
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="../jquery.waypoints-2.0.0.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>-->
+</head>
+<body>
+<b>Настройки плагина</b>: 
+<br />
+ 
+<br />
+ 
+<table width="100%" cellspacing="0" cellpadding="5" border="1" class="style-table"> 
+  <tbody> 
+    <tr><th>Ключ</th><th>Тип</th><th>По&nbsp;умолчанию 
+        <br />
+       </th><th>Описание</th></tr>
+       <tr><td>angle</td><td>integer</td><td>0</td><td>Стартовый угол объекта (от 0 до 360)</td></tr>
+   
+    <tr><td colspan="1">arrivalThreshold</td><td>integer</td><td colspan="1">50</td><td colspan="1">Параметр, указывает за какое расстояние до точки необходимо начинать тормозить, используется если 'loop' равен false </td></tr>
+   
+    <tr><td colspan="1">interval</td><td>integer</td><td colspan="1">15</td><td colspan="1">Интервал обновления сцены. Задается в миллисекундах. Не рекомендуется ставить меньше 15, так как может вызвать сильную загрузку процессора 
+        <br />
+       </td></tr>
+   	 
+    <tr><td>item</td><td>string</td><td>false</td><td>Указывается объект который будет двигаться по точкам (например, '#item' или '.car'). Только если на сцене планируется 1 движущийся объект, иначе используйте 'items'. Параметр игнорируется если указан 'items' 
+        <br />
+       </td></tr>
+   
+    <tr><td>items</td><td>object</td><td>false</td><td>Указываются объекты которые будут двигаться по точкам, если планируется движение нескольких объектов. Если заполнен 'items', то 'item' игнорируется. Для каждого объекта можно задать персональные настройки в следующей последовательности - &quot;item, waypoints, loop, speedLimit, maxForce, waypoint, mass, pathThreshold, arrivalThreshold, position&quot; 
+        <br />
+       </td></tr>
+   
+    <tr><td>loop</td><td>boolean</td><td>true</td><td>Параметр указывает, необходимо ли начинать движение с начала при прохождении всех точек</td></tr>
+   
+    <tr><td>mass</td><td>integer</td><td>1.0</td><td>Масса объекта используется для имитации реалистичности ускорения, поворота и торможения объектов. Поэкспериментируйте в вашем случае, что вам больше подойдет (от 0.01 до 1.0)</td></tr>
+   
+    <tr><td colspan="1">maxForce</td><td>integer</td><td colspan="1">0.05</td><td colspan="1">Ускорение. Параметр который используется для имитации реалистичности ускорения и торможения. Поэкспериментируйте в вашем случае, что вам больше подойдет (от 0.01 до 1.0)</td></tr>
+   
+    <tr><td colspan="1">pathThreshold</td><td>integer</td><td colspan="1">50</td><td colspan="1">Параметр указывает, за какое расстояние до точки переходить к движению к следующей точке. Служит для реалистичности движения по точкам</td></tr>
+   
+    <tr><td colspan="1">position</td><td>object</td><td colspan="1">[0, 0]</td><td colspan="1">Стартовая позиция объекта на сцене ([x, y])</td></tr>
+   
+    <tr><td>rotate</td><td>boolean</td><td>true</td><td>Параметр указывает необходимо ли поворачивать объект вокруг оси</td></tr>
+   
+
+    <tr><td>speedLimit</td><td>integer</td><td>2</td><td>Максимальная скорость движения объекта. Набирается со временем путем прибавления 'maxForce'</td></tr>
+   
+    <tr><td>waypoint</td><td>integer</td><td>0</td><td>Стартовая позиция в 'waypoints' с которой объект начнет движение</td></tr>
+   
+    <tr><td>waypoints</td><td>object</td><td>false</td><td>Массив с набором координат по которым будет двигаться объект (например, [[x1, y1], [x2, y2]]). Указывается 2 и более точек </td></tr>
+   </tbody>
+ </table>
+ 
+<br />
+</body>
+</html>
