@@ -128,27 +128,22 @@
 				
 				// Raphael init
 				paper = Raphael("area", areaWidth, areaHeight);
-			
-			
-			
-				var angle = $("#area-angle").val();
-				var R = $("#area-radius").val(), // радиус окружности  
-				a = 0, // угол старта (в радианах) 
-				da = angle*Math.PI/180; // приращение угла  
+
+				var angle = parseInt($("#area-angle").val());
+				var R = parseInt($("#area-radius").val());
+				var startAngle = parseInt($("#area-startAngle").val());
+				var a = startAngle;
 				var cntPoints = parseInt($("#area-cntPoints").val());
 				var marginTop = parseInt($("#area-marginTop").val());
 				var marginLeft = parseInt($("#area-marginLeft").val());
 				
+				da = angle*Math.PI/180;
 				
 				for(var i=0; i<cntPoints; i++){
-					
 					CreatePath(intval(marginLeft+R*Math.cos(a)),intval(marginTop+R*Math.sin(a)));
-					//$('#log').append('['+parseInt(250+R*Math.cos(a))+','+parseInt(250+R*Math.sin(a))+'],');
-					// увеличение расстояния до полюса  
 					a+=da;
 				}
 			}
-	
 			
 			init();
 		});
@@ -205,6 +200,7 @@
 				<table>
 					<tr><td>Radius:</td><td><input type="text" id="area-radius" value="200"></td></tr>
 					<tr><td>Angle:</td><td><input type="text" id="area-angle" value="15"></td></tr>
+					<tr><td>startAngle:</td><td><input type="text" id="area-startAngle" value="0"></td></tr>
 					<tr><td>Count Points:</td><td><input type="text" id="area-cntPoints" value="24"></td></tr>
 					<tr><td>Margin Top:</td><td><input type="text" id="area-marginTop" value="250"></td></tr>
 					<tr><td>Margin Left:</td><td><input type="text" id="area-marginLeft" value="250"></td></tr>
