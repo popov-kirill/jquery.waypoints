@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>SVG game</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>jQuery waypoints Builder</title>
 	<style>
 		* {
 			padding: 0;
@@ -26,7 +26,6 @@
 		textarea {
 			width:50%;
 			height:100px;
-			
 		}
 	</style>
 	<script type="text/javascript" src="js/raphael-2.1.0.min.js"></script>
@@ -38,17 +37,12 @@
 			
 			$('#area').live('click', function(e){
 				var offset = $('#area').offset(); 
-				//console.log(offset);
-				//alert("left: " + offset.left + ", top: " + offset.top);
-			
-				//var x = e.pageX - this.offsetLeft;
-				//var y = e.pageY - this.offsetTop;
 				var x = e.pageX - offset.left;
 				var y = e.pageY - offset.top;
 				CreatePath(x, y);
 			});
 			
-			$('button').live('click', function(e){
+			$('button').live('click', function(){
 				init();
 			});
 			
@@ -75,9 +69,7 @@
 				l.attr('stroke-linecap', 'round');
 				l.attr('title', 'round');
 				
-
 				path.push(a);
-				
 				
 				var waypoints_str = 'var waypoints = [';
 				var len = path.length;
@@ -105,7 +97,7 @@
 					,height: areaHeight
 				});
 				
-				// svg 
+				// Raphael init
 				paper = Raphael("area", areaWidth, areaHeight);
 			}
 			
@@ -128,9 +120,6 @@
 				<div id="wrapper"></div>
 			</td>
 		</tr>
-	</table>
-    
-	
-
+	</table> 
 </body>
 </html>
