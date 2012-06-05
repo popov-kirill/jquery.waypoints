@@ -42,13 +42,18 @@
 				CreatePath(x, y);
 			});
 			
-			$('button').live('click', function(){
+			$('.button1').live('click', function(){
 				init();
+				return false;
+			});
+			$('.button2').live('click', function(){
+				init2();
+				return false;
 			});
 			
 			function CreatePath(x, y)
 			{
-				var a = [x, y];
+				var a = [intval(x), intval(y)];
 				
 				var p = paper.circle(x, y, 10);
 				p.attr('stroke', 'gray');
@@ -76,14 +81,16 @@
 				var sep = '';
 				$.each(path, function(idx, obj){
 					sep = idx+1 < len?', ':'';
-					waypoints_str += '['+obj[0]+','+obj[0]+']'+sep;
+					waypoints_str += '['+obj[0]+','+obj[1]+']'+sep;
 				});
 				waypoints_str += '];';
-				$('#waypoints').html(waypoints_str);
+				$('#waypoints').val(waypoints_str);
 			}
 			
 			function init()
 			{
+				$('#waypoints').val('');
+				
 				path = [];
 				
 				var areaWidth = $("#area-width").val();
@@ -99,10 +106,88 @@
 				
 				// Raphael init
 				paper = Raphael("area", areaWidth, areaHeight);
+				
 			}
+			
+			function init2()
+			{
+				$('#waypoints').val('');
+				
+				path = [];
+				
+				var areaWidth = $("#area-width").val();
+				var areaHeight = $("#area-height").val();
+				
+				$("#area").remove();
+				$("#wrapper").html('<div id="area"></div>');
+				
+				$("#area").css({
+					width: areaWidth
+					,height: areaHeight
+				});
+				
+				// Raphael init
+				paper = Raphael("area", areaWidth, areaHeight);
+			
+			
+			
+				var angle = $("#area-angle").val();
+				var R = $("#area-radius").val(), // радиус окружности  
+				a = 0, // угол старта (в радианах) 
+				da = angle*Math.PI/180; // приращение угла  
+				var cntPoints = parseInt($("#area-cntPoints").val());
+				var marginTop = parseInt($("#area-marginTop").val());
+				var marginLeft = parseInt($("#area-marginLeft").val());
+				
+				
+				for(var i=0; i<cntPoints; i++){
+					
+					CreatePath(intval(marginLeft+R*Math.cos(a)),intval(marginTop+R*Math.sin(a)));
+					//$('#log').append('['+parseInt(250+R*Math.cos(a))+','+parseInt(250+R*Math.sin(a))+'],');
+					// увеличение расстояния до полюса  
+					a+=da;
+				}
+			}
+	
 			
 			init();
 		});
+		
+		function intval(mixed_var, base) {
+			// Get the integer value of a variable using the optional base for the conversion  
+			// 
+			// version: 1008.1718
+			// discuss at: http://phpjs.org/functions/intval
+			// +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+			// +   improved by: stensi
+			// +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+			// +   input by: Matteo
+			// +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+			// *     example 1: \php.intval('Kevin van Zonneveld');
+			// *     returns 1: 0
+			// *     example 2: \php.intval(4.2);
+			// *     returns 2: 4
+			// *     example 3: \php.intval(42, 8);
+			// *     returns 3: 42
+			// *     example 4: \php.intval('09');
+			// *     returns 4: 9
+			// *     example 5: \php.intval('1e', 16);
+			// *     returns 5: 30
+			var tmp;
+
+			var type = typeof( mixed_var );
+
+			if (type === 'boolean') {
+				return (mixed_var) ? 1 : 0;
+			} else if (type === 'string') {
+				tmp = parseInt(mixed_var, base || 10);
+				return (isNaN(tmp) || !isFinite(tmp)) ? 0 : tmp;
+			} else if (type === 'number' && isFinite(mixed_var) ) {
+				return Math.floor(mixed_var);
+			} else {
+				return 0;
+			}
+		}
 	</script>
 </head>
 <body>
@@ -114,7 +199,17 @@
 					<tr><td>Width:</td><td><input type="text" id="area-width" value="500"></td></tr>
 					<tr><td>Height:</td><td><input type="text" id="area-height" value="500"></td></tr>
 				</table>
-				<button>Build</button>
+				<button class="button1">Build clear</button>
+				<br><br>				
+				
+				<table>
+					<tr><td>Radius:</td><td><input type="text" id="area-radius" value="200"></td></tr>
+					<tr><td>Angle:</td><td><input type="text" id="area-angle" value="15"></td></tr>
+					<tr><td>Count Points:</td><td><input type="text" id="area-cntPoints" value="24"></td></tr>
+					<tr><td>Margin Top:</td><td><input type="text" id="area-marginTop" value="250"></td></tr>
+					<tr><td>Margin Left:</td><td><input type="text" id="area-marginLeft" value="250"></td></tr>
+				</table>
+				<button class="button2">Build circle</button>
 			</td>
 			<td>
 				<div id="wrapper"></div>
